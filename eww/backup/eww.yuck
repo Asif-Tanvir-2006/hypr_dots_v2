@@ -1,0 +1,42 @@
+(defvar home_dir "/home/$USER/.config/eww/Scripts")
+
+(defpoll time :interval "60s"
+  `date +"%a %b %d"`)
+(defpoll time_ :interval "60s"
+  `date +"%I:%M %p"`)
+
+(defpoll volume :interval "1s"
+  `/home/$USER/.config/eww/Scripts/volume.sh | grep 󰕾`)
+
+(defpoll wifi :interval "5s"
+  `/home/$USER/.config/eww/Scripts/wifi.sh | grep '[󰤨󰤭]'`)
+(defpoll stats :interval "5s"
+  `/home/$USER/.config/eww/Scripts/usage.sh`)
+
+(defpoll workspace :interval "0s"
+  `/home/$USER/.config/eww/Scripts/work.bin 6`)
+
+(defwindow bar
+  :monitor 0
+  :windowtype "dock"
+  :geometry (geometry 
+    :width "100%"
+    :height "3px"
+    :anchor "bottom center"
+  )
+  :exclusive true	
+  :wmignore true
+(box :class "main-container"
+  (box :class "info_cool" :halign "start" "${stats}")
+  (box :class "workspaces" :halign "center" "${workspace}")
+
+
+  (box :class "time_battery" :halign "end" "${wifi} | ${volume} | ${time} | ${time_}"
+    )
+
+
+  )
+)
+
+
+

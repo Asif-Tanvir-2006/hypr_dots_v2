@@ -1,0 +1,12 @@
+{
+  "pyprland": {
+      "plugins": ["scratchpads"]
+  },
+  "scratchpads": {
+    "term": {
+      "command": "foot --class scratchpad",
+      "margin" : 50
+    },
+  },
+
+}
